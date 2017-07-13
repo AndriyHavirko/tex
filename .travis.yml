@@ -2,8 +2,17 @@ sudo: required
 dist: trusty
 branches:
   only:
-    - master
+  - master
 before_install:
 - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-full
 script:
 - pdflatex -interaction=nonstopmode -halt-on-error *.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: YkkosE6w/S7c4vBbek+QEWQjZA97SGxnW9UhXDsS1Z1nPZd78XdvwCCyNXmEJAufMOwJviVAlyh6a6Hl774ahtmbMLvO3FQaJL3HD2znlTQVduJBBP5wzVr3s6bfv8El/t633N/18ioaMkTvwgru3Xz/oJZBqC4uj3/M9hnWRXhg2vzbaS5aUboGFdEC961xL+FkuhBVFk9p294/o4ESISiCxe6ECatvgqNoxRCKXX0d5qyehZwT1LzE8YqjFvOmd+8RyhLwibfXB4aEUR00Vg1l7eIwUq/Iw604VE7Q+X/e0YIfk9Xwd4G9R8VHvuOCl8WU/OnYi0IRiVPTuKmncg+ZqaKTyxG7gP2HOrW5bpEiSsnFSddEp1Azs3LAi6yQZA9Ee/GDlC9JqECSt5eZFOCeanc3JQDi9y/uiKBE22u7Zx2GyzJi4jqy3Eo2hN+lugsC+nbcZ2Fcfzh1tT20f4jBKHu7GudYBC5LJq4fzl/xMwP5oujLHhk0zJMCh3wFD6T8+9lvl88euFiOLI9IcA79BZxQFfsuQp5a+TdaL02E8iuV53t7HELSHvS2YZKjkdcMZ1P74sCQPKpLlv+2rmBuwmDkZmJmIADbO3EABafWvdx2cI5XUPChlRgWCQzBLFrAjJwPgR1VOXa4SdaoYZ7Oi/IBFGB++ltmnEFpToE=
+  file: document.pdf
+  skip_cleanup: true
+  on:
+    tags: true
+  overwrite: true
